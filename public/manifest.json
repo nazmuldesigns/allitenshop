@@ -1,0 +1,18 @@
+{
+  "name": "Pataghor - পাতাঘর",
+  "short_name": "পাতাঘর",
+  "description": "পাতা ওল্টান, জীবন গড়ুন - বাংলাদেশের সেরা অনলাইন বইয়ের দোকান",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAF7F0",
+  "theme_color": "#0B6E4F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
