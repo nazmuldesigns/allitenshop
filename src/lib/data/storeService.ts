@@ -429,8 +429,11 @@ export async function addBook(bookData: Partial<Book>): Promise<Book> {
   const newBook: Book = {
     id: `book-${Date.now()}`,
     title: bookData.title || 'Untitled',
-    title_bn: bookData.title_bn || 'নামহীন',
-    slug: bookData.slug || `book-${Date.now()}`,
+    title_bn: bookData.title_bn || 'নামহীন পণ্য',
+    slug: bookData.slug || `product-${Date.now()}`,
+    department: (bookData.department as Department) || 'books',
+    brand: bookData.brand || null,
+    warranty: bookData.warranty || null,
     author_id: bookData.author_id || null,
     publisher_id: bookData.publisher_id || null,
     price: Number(bookData.price) || 200,
@@ -446,6 +449,7 @@ export async function addBook(bookData: Partial<Book>): Promise<Book> {
     is_featured: Boolean(bookData.is_featured),
     is_bestseller: Boolean(bookData.is_bestseller),
     is_flash_sale: Boolean(bookData.is_flash_sale),
+    flash_sale_end: bookData.flash_sale_end || null,
     rating_avg: 5.0,
     rating_count: 1,
     created_at: new Date().toISOString(),
@@ -491,6 +495,9 @@ export async function importBooksFromCsv(rows: Record<string, string>[]): Promis
         title,
         title_bn,
         slug: `${slug}-${Math.floor(Math.random() * 1000)}`,
+        department: (row.department as Department) || 'books',
+        brand: row.brand || null,
+        warranty: row.warranty || null,
         price: parseFloat(row.price) || 250,
         discount_price: row.discount_price ? parseFloat(row.discount_price) : null,
         stock_quantity: parseInt(row.stock_quantity) || 20,
@@ -509,6 +516,23 @@ export async function importBooksFromCsv(rows: Record<string, string>[]): Promis
   return { count, errors };
 }
 
+export interface MonthlySalesData {
+  month_bn: string;
+  month_en: string;
+  revenue: number;
+  orders: number;
+  growth: number;
+}
+
+export interface DepartmentSalesData {
+  department: string;
+  name_bn: string;
+  sales: number;
+  percentage: number;
+  count: number;
+  color: string;
+}
+
 export async function getAdminStats() {
   const totalRevenue = dynamicOrders
     .filter((o) => o.status !== 'cancelled')
@@ -516,15 +540,133 @@ export async function getAdminStats() {
 
   const totalOrders = dynamicOrders.length;
   const totalBooks = dynamicBooks.length;
-  const lowStockCount = dynamicBooks.filter((b) => b.stock_quantity <= 15).length;
-  const recentOrders = dynamicOrders.slice(0, 5);
+  const lowStockCount = dynamicBooks.filter((b) => b.stock_quantity <= 10).length;
+  const outOfStockCount = dynamicBooks.filter((b) => b.stock_quantity === 0).length;
+  const recentOrders = dynamicOrders.slice(0, 8);
+
+  const pendingOrders = dynamicOrders.filter((o) => o.status === 'pending').length;
+  const deliveredOrders = dynamicOrders.filter((o) => o.status === 'delivered').length;
+  const processingOrders = dynamicOrders.filter((o) => o.status === 'processing' || o.status === 'shipped').length;
+
+  // Monthly Sales trends for current year
+  const monthlySales: MonthlySalesData[] = [
+    { month_bn: 'বৈশাখ', month_en: 'Jan', revenue: 64200, orders: 84, growth: 12 },
+    { month_bn: 'জ্যৈষ্ঠ', month_en: 'Feb', revenue: 78500, orders: 102, growth: 22 },
+    { month_bn: 'আষাঢ়', month_en: 'Mar', revenue: 89300, orders: 118, growth: 14 },
+    { month_bn: 'শ্রাবণ', month_en: 'Apr', revenue: 95400, orders: 125, growth: 7 },
+    { month_bn: 'ভাদ্র', month_en: 'May', revenue: 112000, orders: 146, growth: 17 },
+    { month_bn: 'আশ্বিন', month_en: 'Jun', revenue: 104500, orders: 138, growth: -6 },
+    { month_bn: 'কার্তিক', month_en: 'Jul', revenue: 123800, orders: 164, growth: 18 },
+    { month_bn: 'অগ্রহায়ণ', month_en: 'Aug', revenue: 138200, orders: 182, growth: 12 },
+    { month_bn: 'পৌষ', month_en: 'Sep', revenue: 154000, orders: 205, growth: 11 },
+    { month_bn: 'মাঘ', month_en: 'Oct', revenue: 168900, orders: 224, growth: 10 },
+    { month_bn: 'ফাল্গুন', month_en: 'Nov', revenue: 194500, orders: 256, growth: 15 },
+    { month_bn: 'চৈত্র', month_en: 'Dec', revenue: 215000, orders: 288, growth: 11 },
+  ];
+
+  // Sales by Department
+  const departmentSales: DepartmentSalesData[] = [
+    { department: 'books', name_bn: 'বই ও সাহিত্য', sales: 420000, percentage: 38, count: 540, color: '#0B6E4F' },
+    { department: 'electronics', name_bn: 'স্মার্ট ইলেকট্রনিক্স', sales: 310000, percentage: 28, count: 210, color: '#2563EB' },
+    { department: 'islamic', name_bn: 'ইসলামিক ও আতর', sales: 175000, percentage: 16, count: 260, color: '#D97706' },
+    { department: 'stationery', name_bn: 'স্টেশনারি ও অফিস', sales: 110000, percentage: 10, count: 185, color: '#9333EA' },
+    { department: 'kids', name_bn: 'কিডস ও খেলনা', sales: 88000, percentage: 8, count: 140, color: '#E11D48' },
+  ];
 
   return {
     totalRevenue,
     totalOrders,
     totalBooks,
     lowStockCount,
+    outOfStockCount,
+    pendingOrders,
+    deliveredOrders,
+    processingOrders,
     recentOrders,
+    monthlySales,
+    departmentSales,
   };
+}
+
+export async function addCategory(categoryData: Partial<Category>): Promise<Category> {
+  const newCat: Category = {
+    id: `cat-${Date.now()}`,
+    name: categoryData.name || 'New Category',
+    name_bn: categoryData.name_bn || 'নতুন ক্যাটাগরি',
+    slug: categoryData.slug || `category-${Date.now()}`,
+    department: (categoryData.department as Department) || 'books',
+    description: categoryData.description || null,
+    description_bn: categoryData.description_bn || null,
+    icon: categoryData.icon || 'Folder',
+    is_featured: Boolean(categoryData.is_featured),
+    sort_order: categoryData.sort_order || 99,
+  };
+  dynamicCategories.push(newCat);
+  return newCat;
+}
+
+export async function addAuthor(authorData: Partial<Author>): Promise<Author> {
+  const newAuthor: Author = {
+    id: `author-${Date.now()}`,
+    name: authorData.name || 'Author Name',
+    name_bn: authorData.name_bn || 'লেখক/ব্র্যান্ড নাম',
+    slug: authorData.slug || `author-${Date.now()}`,
+    bio: authorData.bio || null,
+    bio_bn: authorData.bio_bn || null,
+    photo_url: authorData.photo_url || null,
+    is_featured: Boolean(authorData.is_featured),
+  };
+  dynamicAuthors.push(newAuthor);
+  return newAuthor;
+}
+
+export async function addPublisher(pubData: Partial<Publisher>): Promise<Publisher> {
+  const newPub: Publisher = {
+    id: `pub-${Date.now()}`,
+    name: pubData.name || 'Publisher Name',
+    name_bn: pubData.name_bn || 'প্রকাশনী নাম',
+    slug: pubData.slug || `publisher-${Date.now()}`,
+    website: pubData.website || null,
+    description: pubData.description || null,
+  };
+  dynamicPublishers.push(newPub);
+  return newPub;
+}
+
+export async function getCoupons(): Promise<Coupon[]> {
+  return dynamicCoupons;
+}
+
+export async function addCoupon(couponData: Partial<Coupon>): Promise<Coupon> {
+  const newCoupon: Coupon = {
+    id: `cpn-${Date.now()}`,
+    code: (couponData.code || 'SPECIAL').trim().toUpperCase(),
+    discount_type: couponData.discount_type || 'percentage',
+    discount_value: Number(couponData.discount_value) || 10,
+    min_order_amount: Number(couponData.min_order_amount) || 0,
+    max_discount_amount: couponData.max_discount_amount ? Number(couponData.max_discount_amount) : null,
+    valid_until: couponData.valid_until || null,
+    times_used: 0,
+    is_active: true,
+    created_at: new Date().toISOString(),
+  };
+  dynamicCoupons.unshift(newCoupon);
+  return newCoupon;
+}
+
+export async function updateCoupon(id: string, updates: Partial<Coupon>): Promise<Coupon | null> {
+  const idx = dynamicCoupons.findIndex((c) => c.id === id);
+  if (idx === -1) return null;
+  dynamicCoupons[idx] = { ...dynamicCoupons[idx], ...updates };
+  return dynamicCoupons[idx];
+}
+
+export async function deleteCoupon(id: string): Promise<boolean> {
+  const len = dynamicCoupons.length;
+  const idx = dynamicCoupons.findIndex((c) => c.id === id);
+  if (idx !== -1) {
+    dynamicCoupons.splice(idx, 1);
+  }
+  return dynamicCoupons.length < len;
 }
 
