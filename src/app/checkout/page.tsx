@@ -53,7 +53,7 @@ export default function CheckoutPage() {
   // If cart is empty, redirect or display notice
   if (cart.length === 0) {
     return (
-      <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+      <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
         <Header />
         <main className="flex-1 max-w-xl mx-auto px-4 py-16 text-center">
           <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
@@ -146,22 +146,22 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 py-6 sm:py-8 w-full">
-        <div className="mb-6">
+      <main className="flex-1 max-w-7xl mx-auto px-4 py-4 sm:py-6 w-full">
+        <div className="mb-5">
           <Link
             href="/cart"
-            className="text-xs font-semibold text-gray-500 hover:text-[#0B6E4F] flex items-center gap-1.5 mb-2"
+            className="text-xs font-semibold text-gray-500 hover:text-[#0B6E4F] flex items-center gap-1 mb-1.5"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>{lang === 'bn' ? 'কার্টে ফিরে যান' : 'Back to Cart'}</span>
           </Link>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E293B]">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900">
             {t.checkout.title}
           </h1>
-          <p className="text-xs text-gray-500 mt-1">
+          <p className="text-xs text-gray-500">
             {lang === 'bn'
               ? 'নিরাপদ ক্যাশ অন ডেলিভারি এবং দ্রুত সরবরাহ'
               : 'Secure checkout with Cash on Delivery and fast nationwide delivery'}
@@ -169,19 +169,19 @@ export default function CheckoutPage() {
         </div>
 
         {errorMessage && (
-          <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
+          <div className="mb-5 p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-xs font-semibold flex items-center gap-2">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{errorMessage}</span>
           </div>
         )}
 
-        <form onSubmit={handleSubmitOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <form onSubmit={handleSubmitOrder} className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Column: Form Fields */}
-          <div className="lg:col-span-8 space-y-6">
+          <div className="lg:col-span-8 space-y-4">
             {/* 1. Customer Information */}
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
-              <h2 className="text-sm font-bold text-[#1E293B] mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#0B6E4F] text-white text-xs flex items-center justify-center font-bold">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-5 shadow-2xs">
+              <h2 className="text-xs sm:text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-100 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-[#0B6E4F] text-white text-[11px] flex items-center justify-center font-bold">
                   ১
                 </span>
                 <span>{t.checkout.customerInfo}</span>
@@ -238,9 +238,9 @@ export default function CheckoutPage() {
             </div>
 
             {/* 2. Shipping Address */}
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
-              <h2 className="text-sm font-bold text-[#1E293B] mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#0B6E4F] text-white text-xs flex items-center justify-center font-bold">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-5 shadow-2xs">
+              <h2 className="text-xs sm:text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-100 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-[#0B6E4F] text-white text-[11px] flex items-center justify-center font-bold">
                   ২
                 </span>
                 <span>{t.checkout.shippingAddress}</span>
@@ -304,9 +304,9 @@ export default function CheckoutPage() {
             </div>
 
             {/* 3. Payment Method */}
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
-              <h2 className="text-sm font-bold text-[#1E293B] mb-4 pb-2 border-b border-gray-100 flex items-center gap-2">
-                <span className="w-6 h-6 rounded-full bg-[#0B6E4F] text-white text-xs flex items-center justify-center font-bold">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-5 shadow-2xs">
+              <h2 className="text-xs sm:text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-100 flex items-center gap-2">
+                <span className="w-5 h-5 rounded-full bg-[#0B6E4F] text-white text-[11px] flex items-center justify-center font-bold">
                   ৩
                 </span>
                 <span>{t.checkout.paymentMethod}</span>
@@ -402,8 +402,8 @@ export default function CheckoutPage() {
 
           {/* Right Column: Order Review Sidebar */}
           <div className="lg:col-span-4">
-            <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-sm sticky top-24">
-              <h3 className="text-sm font-bold text-[#1E293B] mb-4 pb-2 border-b border-gray-100">
+            <div className="bg-white rounded-lg border border-gray-200 p-4 sm:p-5 shadow-2xs sticky top-24">
+              <h3 className="text-xs sm:text-sm font-bold text-gray-900 mb-3 pb-2 border-b border-gray-100">
                 {t.cart.orderSummary}
               </h3>
 

@@ -148,13 +148,13 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
       </nav>
 
       {/* Main Details Section */}
-      <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-8 shadow-sm mb-12">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 sm:p-7 shadow-2xs mb-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          {/* Left: Cover Image */}
+          {/* Left: Product Image */}
           <div className="md:col-span-5 flex flex-col items-center">
-            <div className="relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg border border-gray-200 bg-[#F3EFE6] aspect-[1/1.4]">
+            <div className="relative w-full max-w-sm rounded-lg overflow-hidden border border-gray-200 bg-white aspect-[1/1.2] flex items-center justify-center p-4 shadow-2xs">
               {hasDiscount && (
-                <div className="absolute top-3 left-3 z-10 bg-[#0B6E4F] text-white text-xs font-bold px-2.5 py-1 rounded-full shadow-md">
+                <div className="absolute top-3 left-3 z-10 bg-[#E11D48] text-white text-xs font-bold px-2 py-0.5 rounded shadow-xs">
                   {lang === 'bn' ? `${toBengaliNumber(discountPercent)}% ছাড়` : `${discountPercent}% OFF`}
                 </div>
               )}
@@ -162,12 +162,12 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
                 <img
                   src={book.cover_url}
                   alt={book.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain"
                 />
               ) : (
-                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-gray-400">
-                  <BookOpen className="w-16 h-16 text-gray-300 mb-2" />
-                  <span className="text-sm font-semibold">{book.title}</span>
+                <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center text-gray-300">
+                  <span className="text-4xl mb-2">📦</span>
+                  <span className="text-xs text-gray-400 font-semibold">{book.title}</span>
                 </div>
               )}
             </div>
@@ -254,14 +254,14 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
             </div>
 
             {/* Price Box */}
-            <div className="bg-[#FAF7F0] p-4 rounded-xl border border-[#E2D9C8]/70 mb-6 flex items-baseline justify-between">
+            <div className="bg-gray-50/80 p-4 rounded-lg border border-gray-200 mb-6 flex items-baseline justify-between">
               <div>
                 <div className="flex items-baseline gap-2">
-                  <span className="text-3xl font-black text-[#0B6E4F]">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#0B6E4F]">
                     {formatPrice(currentPrice)}
                   </span>
                   {hasDiscount && (
-                    <span className="text-base text-gray-400 line-through font-medium">
+                    <span className="text-sm text-gray-400 line-through font-medium">
                       {formatPrice(book.price)}
                     </span>
                   )}
@@ -269,7 +269,7 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
                 {hasDiscount && (
                   <p className="text-xs text-emerald-700 font-semibold mt-0.5">
                     {lang === 'bn'
-                      ? `আপনি সাশ্রয় করছেন ৳${toBengaliNumber(book.price - book.discount_price!)}`
+                      ? `সাশ্রয় ৳${toBengaliNumber(book.price - book.discount_price!)}`
                       : `You save ৳${book.price - book.discount_price!}`}
                   </p>
                 )}
@@ -278,17 +278,17 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
               {/* Stock status */}
               <div className="text-right">
                 {book.stock_quantity <= 0 ? (
-                  <span className="inline-block px-3 py-1 bg-red-100 text-red-700 font-bold text-xs rounded-full">
+                  <span className="inline-block px-2.5 py-1 bg-red-50 text-red-700 font-bold text-xs rounded border border-red-200">
                     {t.book.outOfStock}
                   </span>
                 ) : book.stock_quantity <= 5 ? (
-                  <span className="inline-block px-3 py-1 bg-amber-100 text-amber-800 font-bold text-xs rounded-full">
+                  <span className="inline-block px-2.5 py-1 bg-amber-50 text-amber-800 font-bold text-xs rounded border border-amber-200">
                     {lang === 'bn'
-                      ? `মাত্র ${toBengaliNumber(book.stock_quantity)}টি বাকি আছে`
+                      ? `মাত্র ${toBengaliNumber(book.stock_quantity)}টি বাকি`
                       : `Only ${book.stock_quantity} left`}
                   </span>
                 ) : (
-                  <span className="inline-block px-3 py-1 bg-[#E8F5EE] text-[#0B6E4F] font-bold text-xs rounded-full">
+                  <span className="inline-block px-2.5 py-1 bg-emerald-50 text-[#0B6E4F] font-bold text-xs rounded border border-emerald-200">
                     ✓ {t.book.inStock}
                   </span>
                 )}
@@ -374,9 +374,9 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
       </div>
 
       {/* Tabs Section: Description, Specifications, Reviews */}
-      <div className="bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-8 shadow-sm mb-12">
+      <div className="bg-white rounded-lg border border-gray-200 p-5 sm:p-7 shadow-2xs mb-8">
         {/* Tab Headers */}
-        <div className="flex items-center gap-6 border-b border-gray-200 mb-6 text-sm font-bold">
+        <div className="flex items-center gap-6 border-b border-gray-200 mb-6 text-xs sm:text-sm font-bold">
           <button
             onClick={() => setActiveTab('desc')}
             className={`pb-3 border-b-2 transition-colors ${
@@ -406,7 +406,7 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
             }`}
           >
             <span>{t.book.reviews}</span>
-            <span className="px-1.5 py-0.5 rounded-full bg-gray-100 text-[10px] text-gray-600">
+            <span className="px-1.5 py-0.5 rounded bg-gray-100 text-[10px] text-gray-600">
               {reviews.length}
             </span>
           </button>
@@ -415,17 +415,17 @@ export default function BookDetailClient({ book, relatedBooks }: BookDetailClien
         {/* Tab 1: Description */}
         {activeTab === 'desc' && (
           <div className="prose prose-sm max-w-none text-gray-700 leading-relaxed">
-            <p className="text-base font-medium mb-3">
+            <p className="text-sm sm:text-base font-medium mb-3">
               {lang === 'bn'
                 ? book.description_bn || book.description
                 : book.description || book.description_bn}
             </p>
             {book.author?.bio_bn && (
-              <div className="mt-6 p-4 rounded-xl bg-[#FAF7F0] border border-[#E2D9C8]/60">
-                <h4 className="font-bold text-sm text-[#0B6E4F] mb-1">
+              <div className="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
+                <h4 className="font-bold text-xs uppercase text-[#0B6E4F] mb-1">
                   {lang === 'bn' ? 'লেখক পরিচিতি' : 'About the Author'}
                 </h4>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 leading-relaxed">
                   {lang === 'bn' ? book.author.bio_bn : book.author.bio}
                 </p>
               </div>

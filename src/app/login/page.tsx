@@ -85,11 +85,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
 
       <main className="flex-1 max-w-md mx-auto px-4 py-12 w-full">
-        <div className="bg-white rounded-3xl border border-gray-200/80 p-6 sm:p-8 shadow-sm">
+        <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-8 shadow-2xs">
           {/* Brand Logo & Header */}
           <div className="text-center mb-6">
             <div className="w-12 h-12 rounded-2xl bg-[#0B6E4F] text-white flex items-center justify-center mx-auto mb-3 shadow-md">

@@ -181,8 +181,26 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Payment & Courier Partners Strip (Rokomari Style) */}
+        <div className="py-6 border-t border-[#0B6E4F] flex flex-col md:flex-row items-center justify-between gap-4 text-xs">
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            <span className="text-gray-300 font-semibold">{lang === 'bn' ? 'পেমেন্ট মাধ্যম:' : 'Payment Methods:'}</span>
+            <span className="px-2.5 py-1 bg-white/10 rounded font-semibold text-white">ক্যাশ অন ডেলিভারি</span>
+            <span className="px-2.5 py-1 bg-[#D12053] rounded font-bold text-white">bKash</span>
+            <span className="px-2.5 py-1 bg-[#F7941D] rounded font-bold text-white">Nagad</span>
+            <span className="px-2.5 py-1 bg-white/10 rounded font-semibold text-white">Visa / Mastercard</span>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap justify-center">
+            <span className="text-gray-300 font-semibold">{lang === 'bn' ? 'ডেলিভারি পার্টনার:' : 'Delivery Partners:'}</span>
+            <span className="px-2 py-0.5 bg-emerald-900/60 border border-emerald-700 rounded text-emerald-200 text-[11px] font-medium">Pathao</span>
+            <span className="px-2 py-0.5 bg-emerald-900/60 border border-emerald-700 rounded text-emerald-200 text-[11px] font-medium">Steadfast</span>
+            <span className="px-2 py-0.5 bg-emerald-900/60 border border-emerald-700 rounded text-emerald-200 text-[11px] font-medium">RedX</span>
+            <span className="px-2 py-0.5 bg-emerald-900/60 border border-emerald-700 rounded text-emerald-200 text-[11px] font-medium">সুন্দরবন কুরিয়ার</span>
+          </div>
+        </div>
+
         {/* Bottom Copyright */}
-        <div className="pt-8 border-t border-[#0B6E4F] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
+        <div className="pt-6 border-t border-[#0B6E4F] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-400">
           <p>© {new Date().getFullYear()} Pataghor (পাতাঘর). All rights reserved.</p>
           <p className="text-gray-400">
             {lang === 'bn' ? 'ভালোবাসা দিয়ে তৈরি বাংলাদেশের পাঠকদের জন্য ❤️' : 'Crafted with care for book lovers in Bangladesh ❤️'}

@@ -16,117 +16,89 @@ import { Department } from '@/types';
 
 interface DepartmentCard {
   id: Department;
-  title: string;
   title_bn: string;
-  desc: string;
+  title_en: string;
   desc_bn: string;
+  desc_en: string;
   badge_bn: string;
   badge_en: string;
-  bgGradient: string;
-  borderColor: string;
   iconBg: string;
-  textColor: string;
+  iconColor: string;
   icon: React.ComponentType<{ className?: string }>;
-  itemCountText_bn: string;
-  itemCountText_en: string;
 }
 
 const DEPT_CARDS: DepartmentCard[] = [
   {
     id: 'books',
-    title: 'Books & Literature',
     title_bn: 'বই ও সাহিত্য',
-    desc: 'Bestseller novels, thrillers & academic',
-    desc_bn: 'সেরা কথাসাহিত্য, রহস্য, কবিতা ও ক্লাসিক',
-    badge_bn: 'মূল কালেকশন',
-    badge_en: 'Main Library',
-    bgGradient: 'from-emerald-500/10 via-emerald-500/5 to-white',
-    borderColor: 'hover:border-emerald-500/60',
-    iconBg: 'bg-emerald-600 text-white',
-    textColor: 'text-emerald-900',
+    title_en: 'Books',
+    desc_bn: 'উপন্যাস, থ্রিলার ও একাডেমিক',
+    desc_en: 'Novels & Academics',
+    badge_bn: '১০০+ বই',
+    badge_en: '100+ Books',
+    iconBg: 'bg-emerald-50',
+    iconColor: 'text-[#0B6E4F]',
     icon: BookOpen,
-    itemCountText_bn: '১০০+ বই',
-    itemCountText_en: '100+ Books',
   },
   {
     id: 'electronics',
-    title: 'Electronics & Gadgets',
     title_bn: 'ইলেকট্রনিক্স ও গ্যাজেট',
-    desc: 'Smartwatches, earbuds & accessories',
-    desc_bn: 'স্মার্টওয়াচ, ট্রু-ওয়্যারলেস বাডস ও গ্যাজেট',
-    badge_bn: 'অফিসিয়াল ওয়ারেন্টি',
-    badge_en: 'Official Warranty',
-    bgGradient: 'from-blue-500/10 via-blue-500/5 to-white',
-    borderColor: 'hover:border-blue-500/60',
-    iconBg: 'bg-blue-600 text-white',
-    textColor: 'text-blue-900',
+    title_en: 'Electronics',
+    desc_bn: 'স্মার্টওয়াচ, বাডস ও এক্সেসরিজ',
+    desc_en: 'Smartwatch & Audio',
+    badge_bn: 'ওয়ারেন্টিসহ',
+    badge_en: 'Warranty',
+    iconBg: 'bg-blue-50',
+    iconColor: 'text-blue-600',
     icon: Headphones,
-    itemCountText_bn: 'টপ রেটেড',
-    itemCountText_en: 'Top Rated',
   },
   {
     id: 'stationery',
-    title: 'Stationery & Office',
     title_bn: 'স্টেশনারি ও অফিস',
-    desc: 'Leather journals, luxury pens & colors',
-    desc_bn: 'লেদার ডায়রি, রোলারবল পেন ও আর্ট সামগ্রী',
-    badge_bn: 'প্রিমিয়াম কোয়ালিটি',
-    badge_en: 'Premium Craft',
-    bgGradient: 'from-purple-500/10 via-purple-500/5 to-white',
-    borderColor: 'hover:border-purple-500/60',
-    iconBg: 'bg-purple-600 text-white',
-    textColor: 'text-purple-900',
+    title_en: 'Stationery',
+    desc_bn: 'ডায়েরি, পার্কার পেন ও আর্ট কিট',
+    desc_en: 'Diaries & Art Kits',
+    badge_bn: 'প্রিমিয়াম',
+    badge_en: 'Premium',
+    iconBg: 'bg-purple-50',
+    iconColor: 'text-purple-600',
     icon: PenTool,
-    itemCountText_bn: 'স্টুডেন্ট ফেভারিট',
-    itemCountText_en: 'Student Pick',
   },
   {
     id: 'islamic',
-    title: 'Islamic & Attar',
-    title_bn: 'ইসলামিক কর্নার ও আতর',
-    desc: 'Alcohol-free attars, prayer mats & tasbih',
-    desc_bn: '১০০% খাঁটি ওউদ আতর, জায়নামাজ ও রেহাল',
-    badge_bn: 'হালাল লাইফস্টাইল',
-    badge_en: 'Halal Lifestyle',
-    bgGradient: 'from-amber-500/10 via-amber-500/5 to-white',
-    borderColor: 'hover:border-amber-500/60',
-    iconBg: 'bg-amber-600 text-white',
-    textColor: 'text-amber-900',
+    title_bn: 'ইসলামিক ও আতর',
+    title_en: 'Islamic & Attar',
+    desc_bn: 'খাঁটি ওউদ আতর ও জায়নামাজ',
+    desc_en: 'Alcohol-free Attar & Mats',
+    badge_bn: '১০০% খাঁটি',
+    badge_en: 'Authentic',
+    iconBg: 'bg-amber-50',
+    iconColor: 'text-amber-700',
     icon: Moon,
-    itemCountText_bn: 'খাঁটি ও পরীক্ষিত',
-    itemCountText_en: 'Authentic',
   },
   {
     id: 'kids',
-    title: 'Kids & Brain Toys',
-    title_bn: 'বাচ্চাদের খেলনা ও কিট',
-    desc: 'Alphabet puzzles, speed cubes & STEM kits',
-    desc_bn: 'বাংলা বর্ণমালা পাজল, স্পিড কিউব ও রোবোটিকস',
-    badge_bn: 'ব্রেন ডেভলপমেন্ট',
-    badge_en: 'Brain Growth',
-    bgGradient: 'from-pink-500/10 via-pink-500/5 to-white',
-    borderColor: 'hover:border-pink-500/60',
-    iconBg: 'bg-pink-600 text-white',
-    textColor: 'text-pink-900',
+    title_bn: 'কিডস ও খেলনা',
+    title_en: 'Kids & Toys',
+    desc_bn: 'বাংলা বর্ণমালা পাজল ও কিউব',
+    desc_en: 'Puzzles & Cubes',
+    badge_bn: 'ব্রেন কিট',
+    badge_en: 'Brain Kit',
+    iconBg: 'bg-pink-50',
+    iconColor: 'text-pink-600',
     icon: Gamepad2,
-    itemCountText_bn: 'নিরাপদ খেলনা',
-    itemCountText_en: 'Safe & Smart',
   },
   {
     id: 'gifts',
-    title: 'Gifts & Lifestyle',
     title_bn: 'গিফট ও লাইফস্টাইল',
-    desc: 'Custom mugs, reading lights & bookmarks',
-    desc_bn: 'টাইপোগ্রাফি মগ, রিডিং লাইট ও বুকমার্ক',
-    badge_bn: 'সেরা উপহার',
-    badge_en: 'Best Gifts',
-    bgGradient: 'from-rose-500/10 via-rose-500/5 to-white',
-    borderColor: 'hover:border-rose-500/60',
-    iconBg: 'bg-rose-600 text-white',
-    textColor: 'text-rose-900',
+    title_en: 'Gifts & Lifestyle',
+    desc_bn: 'কাস্টম মগ ও রিডিং ল্যাম্প',
+    desc_en: 'Mugs & Lamps',
+    badge_bn: 'উপহার বক্স',
+    badge_en: 'Gift Box',
+    iconBg: 'bg-rose-50',
+    iconColor: 'text-rose-600',
     icon: Gift,
-    itemCountText_bn: 'উপহার বক্সসহ',
-    itemCountText_en: 'Gift Ready',
   },
 ];
 
@@ -134,62 +106,59 @@ export default function DepartmentGrid() {
   const { lang } = useLanguage();
 
   return (
-    <section className="mb-14">
-      <div className="flex items-center justify-between mb-5">
+    <section className="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 mb-8 shadow-2xs">
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
         <div>
-          <div className="flex items-center gap-2">
-            <span className="text-xl">🛍️</span>
-            <h2 className="text-xl sm:text-2xl font-bold text-[#1E293B]">
-              {lang === 'bn' ? 'ডিপার্টমেন্ট অনুযায়ী কেনাকাটা' : 'Shop by Department'}
-            </h2>
-          </div>
-          <p className="text-xs sm:text-sm text-gray-500 mt-0.5">
+          <h2 className="text-base sm:text-lg font-bold text-gray-900">
+            {lang === 'bn' ? 'প্রধান ডিপার্টমেন্টসমূহ' : 'Shop by Department'}
+          </h2>
+          <p className="text-[11px] text-gray-500">
             {lang === 'bn'
-              ? 'বই ছাড়াও ইলেকট্রনিক্স, স্টেশনারি, আতর ও গিফট সামগ্রী এক ঠিকানায়'
-              : 'Explore Books, Gadgets, Stationery, Islamic Items & Gifts all in one place'}
+              ? 'বই, গ্যাজেট, স্টেশনারি ও ইসলামিক সামগ্রীর এক বিশ্বস্ত প্ল্যাটফর্ম'
+              : 'Browse our complete catalog across major departments'}
           </p>
         </div>
         <Link
           href="/catalog"
-          className="text-xs sm:text-sm font-semibold text-[#0B6E4F] hover:text-[#074D37] flex items-center gap-1"
+          className="text-xs font-bold text-[#0B6E4F] hover:underline flex items-center gap-1"
         >
-          <span>{lang === 'bn' ? 'সব পণ্য' : 'All Products'}</span>
-          <span>→</span>
+          <span>{lang === 'bn' ? 'সকল পণ্য' : 'All Products'}</span>
+          <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5 sm:gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
         {DEPT_CARDS.map((dept) => {
           const Icon = dept.icon;
           return (
             <Link
               key={dept.id}
               href={`/catalog?department=${dept.id}`}
-              className={`group relative flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-b ${dept.bgGradient} border border-gray-200/90 ${dept.borderColor} hover:shadow-lg transition-all transform hover:-translate-y-1`}
+              className="group bg-gray-50/60 hover:bg-white p-3.5 rounded-lg border border-gray-200/90 hover:border-[#0B6E4F] hover:shadow-xs transition-all flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center justify-between mb-2.5">
                   <div
-                    className={`w-11 h-11 rounded-xl ${dept.iconBg} flex items-center justify-center shadow-md group-hover:scale-110 transition-transform`}
+                    className={`w-9 h-9 rounded-md ${dept.iconBg} ${dept.iconColor} flex items-center justify-center font-bold`}
                   >
-                    <Icon className="w-5 h-5" />
+                    <Icon className="w-4 h-4" />
                   </div>
-                  <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/90 text-gray-700 shadow-xs border border-gray-100">
+                  <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white text-gray-600 border border-gray-200">
                     {lang === 'bn' ? dept.badge_bn : dept.badge_en}
                   </span>
                 </div>
 
-                <h3 className={`text-sm sm:text-base font-bold ${dept.textColor} mb-1 line-clamp-1`}>
-                  {lang === 'bn' ? dept.title_bn : dept.title}
+                <h3 className="text-xs sm:text-sm font-bold text-gray-800 group-hover:text-[#0B6E4F] transition-colors mb-0.5 line-clamp-1">
+                  {lang === 'bn' ? dept.title_bn : dept.title_en}
                 </h3>
-                <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
-                  {lang === 'bn' ? dept.desc_bn : dept.desc}
+                <p className="text-[11px] text-gray-500 line-clamp-1">
+                  {lang === 'bn' ? dept.desc_bn : dept.desc_en}
                 </p>
               </div>
 
-              <div className="mt-4 pt-2.5 border-t border-gray-200/50 flex items-center justify-between text-xs font-semibold text-[#0B6E4F] group-hover:text-[#074D37]">
-                <span>{lang === 'bn' ? dept.itemCountText_bn : dept.itemCountText_en}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+              <div className="mt-3 pt-2 border-t border-gray-200/50 flex items-center justify-between text-[11px] font-bold text-[#0B6E4F]">
+                <span>{lang === 'bn' ? 'ব্রাউজ করুন' : 'Browse'}</span>
+                <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </Link>
           );
@@ -198,4 +167,3 @@ export default function DepartmentGrid() {
     </section>
   );
 }
-

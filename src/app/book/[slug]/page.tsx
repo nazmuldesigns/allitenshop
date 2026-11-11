@@ -98,7 +98,7 @@ export default async function BookDetailPage({ params }: BookPageProps) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       {/* Structured Data Script for Google Rich Snippets */}
       <script
         type="application/ld+json"

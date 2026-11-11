@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Zap, Clock, ArrowRight } from 'lucide-react';
+import { Clock, ArrowRight, Zap } from 'lucide-react';
 import { Book } from '@/types';
 import { useLanguage } from '@/context/LanguageContext';
 import BookCard from '../book/BookCard';
@@ -40,54 +40,59 @@ export default function FlashSaleStrip({ books }: FlashSaleStripProps) {
   if (!books || books.length === 0) return null;
 
   return (
-    <section className="bg-gradient-to-r from-[#FEF6E6] via-[#FFF9EE] to-[#FEF6E6] border border-[#F4A300]/30 rounded-2xl p-5 sm:p-6 mb-12 shadow-sm">
+    <section className="bg-white border border-gray-200 rounded-lg p-4 sm:p-5 mb-8 shadow-2xs">
       {/* Header with Countdown */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#F4A300]/20">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4 pb-3 border-b border-gray-100">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 rounded-xl bg-[#F4A300] text-white">
-            <Zap className="w-5 h-5 fill-white" />
+          <div className="w-8 h-8 rounded-md bg-rose-50 text-[#E11D48] flex items-center justify-center font-bold">
+            <Zap className="w-4 h-4 fill-[#E11D48]" />
           </div>
           <div>
-            <h2 className="text-lg sm:text-xl font-bold text-[#1E293B] flex items-center gap-2">
-              <span>{t.home.flashSaleTitle}</span>
-            </h2>
-            <p className="text-xs text-gray-500">
-              {lang === 'bn' ? 'সীমিত সময়ের জন্য বিশেষ মূল্যছাড়' : 'Special discounts for a limited time'}
+            <div className="flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-bold text-gray-900">
+                {lang === 'bn' ? 'আজকের সুপার ডিল ও অফার' : 'Today’s Super Deals'}
+              </h2>
+              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-rose-100 text-rose-700">
+                {lang === 'bn' ? 'সীমিত সময়' : 'Limited Time'}
+              </span>
+            </div>
+            <p className="text-[11px] text-gray-500">
+              {lang === 'bn' ? 'সেরা মূল্যে সর্বোচ্চ ছাড়ের পণ্য' : 'Top discounted products of the day'}
             </p>
           </div>
         </div>
 
         {/* Countdown Timer */}
-        <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4 text-[#C88500]" />
-          <span className="text-xs font-medium text-gray-600 hidden sm:inline">
-            {t.home.flashSaleEndsIn}
-          </span>
+        <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 text-xs text-gray-600 font-medium">
+            <Clock className="w-3.5 h-3.5 text-gray-400" />
+            <span className="hidden sm:inline">{lang === 'bn' ? 'অফার শেষ হতে বাকি:' : 'Ends in:'}</span>
+          </div>
           <div className="flex items-center gap-1 text-xs font-bold text-white">
-            <span className="px-2 py-1 rounded bg-[#0B6E4F] min-w-[28px] text-center">
+            <span className="px-2 py-0.5 rounded bg-gray-900 min-w-[24px] text-center">
               {lang === 'bn' ? toBengaliNumber(String(timeLeft.hours).padStart(2, '0')) : String(timeLeft.hours).padStart(2, '0')}
             </span>
             <span className="text-gray-400 font-bold">:</span>
-            <span className="px-2 py-1 rounded bg-[#0B6E4F] min-w-[28px] text-center">
+            <span className="px-2 py-0.5 rounded bg-gray-900 min-w-[24px] text-center">
               {lang === 'bn' ? toBengaliNumber(String(timeLeft.minutes).padStart(2, '0')) : String(timeLeft.minutes).padStart(2, '0')}
             </span>
             <span className="text-gray-400 font-bold">:</span>
-            <span className="px-2 py-1 rounded bg-[#F4A300] min-w-[28px] text-center text-[#1E293B]">
+            <span className="px-2 py-0.5 rounded bg-[#E11D48] min-w-[24px] text-center">
               {lang === 'bn' ? toBengaliNumber(String(timeLeft.seconds).padStart(2, '0')) : String(timeLeft.seconds).padStart(2, '0')}
             </span>
           </div>
           <Link
             href="/catalog?flash=true"
-            className="ml-2 text-xs font-semibold text-[#0B6E4F] hover:text-[#074D37] flex items-center gap-1"
+            className="ml-2 text-xs font-bold text-[#0B6E4F] hover:underline flex items-center gap-1"
           >
-            <span>{t.home.viewAll}</span>
+            <span>{lang === 'bn' ? 'সবগুলো দেখুন' : 'See All'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       </div>
 
       {/* Book Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
         {books.slice(0, 6).map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
@@ -95,4 +100,3 @@ export default function FlashSaleStrip({ books }: FlashSaleStripProps) {
     </section>
   );
 }
-

@@ -342,16 +342,16 @@ export default function CatalogClientFilters({
       </div>
 
       {/* Main Grid: Sidebar + Products */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Desktop Filter Sidebar */}
-        <aside className="hidden lg:block lg:col-span-1 bg-white p-5 rounded-2xl border border-gray-200/80 shadow-sm h-fit sticky top-24">
+        <aside className="hidden lg:block lg:col-span-3 bg-white p-4 rounded-lg border border-gray-200 shadow-2xs h-fit sticky top-24">
           {filterSidebar}
         </aside>
 
         {/* Mobile Filter Modal */}
         {mobileFilterOpen && (
           <div className="fixed inset-0 z-50 flex lg:hidden bg-black/50 backdrop-blur-sm">
-            <div className="relative w-4/5 max-w-sm bg-white h-full overflow-y-auto p-5 shadow-2xl">
+            <div className="relative w-4/5 max-w-sm bg-white h-full overflow-y-auto p-4 shadow-xl">
               <button
                 onClick={() => setMobileFilterOpen(false)}
                 className="absolute top-4 right-4 p-2 text-gray-500 hover:text-black"
@@ -365,29 +365,29 @@ export default function CatalogClientFilters({
         )}
 
         {/* Products Grid */}
-        <section className="lg:col-span-3">
+        <section className="lg:col-span-9">
           {books.length === 0 ? (
-            <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center">
-              <div className="w-16 h-16 rounded-full bg-[#E8F5EE] text-[#0B6E4F] flex items-center justify-center mx-auto mb-4 text-2xl">
+            <div className="bg-white rounded-lg border border-gray-200 p-10 text-center">
+              <div className="w-14 h-14 rounded-full bg-emerald-50 text-[#0B6E4F] flex items-center justify-center mx-auto mb-3 text-2xl">
                 🔍
               </div>
-              <h3 className="text-lg font-bold text-gray-800 mb-2">
+              <h3 className="text-base font-bold text-gray-800 mb-1">
                 {lang === 'bn' ? 'কোনো পণ্য পাওয়া যায়নি' : 'No items found'}
               </h3>
-              <p className="text-xs text-gray-500 mb-6 max-w-md mx-auto">
+              <p className="text-xs text-gray-500 mb-5 max-w-md mx-auto">
                 {lang === 'bn'
                   ? 'আপনার দেওয়া ফিল্টার বা অনুসন্ধানের সাথে কোনো পণ্য মেলেনি। অনুগ্রহ করে ফিল্টারগুলো পরিবর্তন করুন।'
                   : 'We could not find any items matching your active filters. Try clearing some filters.'}
               </p>
               <button
                 onClick={clearAllFilters}
-                className="px-5 py-2.5 rounded-xl bg-[#0B6E4F] text-white text-xs font-semibold hover:bg-[#074D37] transition-colors"
+                className="px-4 py-2 rounded-md bg-[#0B6E4F] text-white text-xs font-semibold hover:bg-[#074D37] transition-colors"
               >
                 {t.catalog.clearFilters}
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 gap-3">
               {books.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}

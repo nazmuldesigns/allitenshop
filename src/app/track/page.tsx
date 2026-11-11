@@ -225,7 +225,7 @@ function TrackContent() {
 
           {/* Tracking Note */}
           {order.tracking_notes && (
-            <div className="p-3 rounded-xl bg-[#FAF7F0] border border-[#E2D9C8]/70 text-xs">
+            <div className="p-3 rounded-lg bg-gray-50 border border-gray-200 text-xs">
               <span className="font-bold text-[#0B6E4F] block mb-0.5">
                 {lang === 'bn' ? 'কুরিয়ার / ট্র্যাকিং নোট:' : 'Courier / Tracking Note:'}
               </span>
@@ -307,7 +307,7 @@ function TrackContent() {
 
 export default function TrackPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
       <main className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full">
         <Suspense fallback={<div className="p-8 text-center text-xs">লোড হচ্ছে...</div>}>

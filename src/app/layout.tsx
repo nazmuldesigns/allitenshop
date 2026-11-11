@@ -70,7 +70,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="min-h-screen flex flex-col bg-[#FAF7F0] text-[#1E293B]">
+      <body className="min-h-screen flex flex-col bg-[#F4F5F7] text-[#1E293B]">
         <LanguageProvider>
           <CartProvider>
             <WishlistProvider>

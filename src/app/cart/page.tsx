@@ -53,37 +53,37 @@ export default function CartPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
 
-      <main className="flex-1 max-w-7xl mx-auto px-4 py-6 sm:py-8 w-full">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1E293B] mb-6 flex items-center gap-3">
-          <ShoppingBag className="w-7 h-7 text-[#0B6E4F]" />
+      <main className="flex-1 max-w-7xl mx-auto px-4 py-4 sm:py-6 w-full">
+        <h1 className="text-xl sm:text-2xl font-bold text-gray-900 mb-5 flex items-center gap-2.5">
+          <ShoppingBag className="w-6 h-6 text-[#0B6E4F]" />
           <span>{t.cart.title}</span>
         </h1>
 
         {cart.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-gray-200 p-12 text-center max-w-lg mx-auto">
-            <div className="w-16 h-16 rounded-full bg-[#E8F5EE] text-[#0B6E4F] flex items-center justify-center mx-auto mb-4 text-2xl">
+          <div className="bg-white rounded-lg border border-gray-200 p-10 text-center max-w-md mx-auto shadow-2xs">
+            <div className="w-14 h-14 rounded-full bg-emerald-50 text-[#0B6E4F] flex items-center justify-center mx-auto mb-3 text-2xl">
               🛒
             </div>
-            <h2 className="text-xl font-bold text-gray-800 mb-2">{t.cart.emptyTitle}</h2>
-            <p className="text-xs text-gray-500 mb-6">{t.cart.emptySubtitle}</p>
+            <h2 className="text-lg font-bold text-gray-800 mb-1">{t.cart.emptyTitle}</h2>
+            <p className="text-xs text-gray-500 mb-5">{t.cart.emptySubtitle}</p>
             <Link
               href="/catalog"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#0B6E4F] text-white font-bold text-sm hover:bg-[#074D37] transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#0B6E4F] text-white font-bold text-xs hover:bg-[#074D37] transition-all shadow-xs"
             >
               <span>{t.cart.continueShopping}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             {/* Cart Items List */}
-            <div className="lg:col-span-8 bg-white rounded-2xl border border-gray-200/80 p-5 sm:p-6 shadow-sm">
-              <div className="flex items-center justify-between pb-4 border-b border-gray-100 mb-4">
-                <span className="text-xs font-bold text-gray-500 uppercase tracking-wider">
-                  {lang === 'bn' ? 'নির্বাচিত বইসমূহ' : 'Selected Books'} ({cart.length})
+            <div className="lg:col-span-8 bg-white rounded-lg border border-gray-200 p-4 sm:p-5 shadow-2xs">
+              <div className="flex items-center justify-between pb-3 border-b border-gray-100 mb-4">
+                <span className="text-xs font-bold text-gray-600 uppercase tracking-wider">
+                  {lang === 'bn' ? 'নির্বাচিত পণ্যসমূহ' : 'Selected Products'} ({cart.length})
                 </span>
                 <button
                   onClick={clearCart}

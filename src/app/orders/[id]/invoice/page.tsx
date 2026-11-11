@@ -95,7 +95,7 @@ export default function InvoicePage({ params }: { params: Promise<{ id: string }
         </div>
 
         {/* Courier COD Alert Box */}
-        <div className="bg-[#FAF7F0] border-2 border-[#F4A300] rounded-xl p-4 mb-6 flex items-center justify-between">
+        <div className="bg-amber-50/50 border border-amber-300 rounded-lg p-3 sm:p-4 mb-6 flex items-center justify-between">
           <div>
             <span className="text-xs font-bold text-slate-600 block">কুরিয়ার আদায়যোগ্য মূল্য (COD Amount):</span>
             <span className="text-2xl font-black text-[#0B6E4F]">

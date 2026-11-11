@@ -127,7 +127,7 @@ export default function AccountPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
 
       <main className="flex-1 max-w-7xl mx-auto px-4 py-6 sm:py-8 w-full">
@@ -234,7 +234,7 @@ export default function AccountPage() {
                         </span>
                         <Link
                           href={`/track?orderNumber=${ord.orderNumber}`}
-                          className="px-3 py-1.5 rounded-lg bg-[#FAF7F0] hover:bg-[#E8F5EE] text-[#0B6E4F] border border-[#0B6E4F]/30 font-bold text-xs flex items-center gap-1"
+                          className="px-3 py-1.5 rounded-lg bg-gray-50 hover:bg-[#E8F5EE] text-[#0B6E4F] border border-[#0B6E4F]/30 font-bold text-xs flex items-center gap-1"
                         >
                           <Truck className="w-3.5 h-3.5" />
                           <span>ট্র্যাক করুন</span>

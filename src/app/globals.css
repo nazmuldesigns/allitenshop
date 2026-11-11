@@ -7,10 +7,10 @@
   --color-brand-amber: #F4A300;
   --color-brand-amber-light: #FEF6E6;
   --color-brand-amber-dark: #C88500;
-  --color-brand-cream: #FAF7F0;
+  --color-brand-cream: #FFFFFF;
   --color-brand-charcoal: #1E293B;
 
-  --background: #FAF7F0;
+  --background: #F4F5F7;
   --foreground: #1E293B;
   --card-bg: #FFFFFF;
   --primary: #0B6E4F;
@@ -18,8 +18,8 @@
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: #F4F5F7;
+  color: #1E293B;
   font-family: var(--font-bengali), var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
@@ -30,7 +30,7 @@ body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7F0;
+  background: #F4F5F7;
 }
 ::-webkit-scrollbar-thumb {
   background: #CBD5E1;

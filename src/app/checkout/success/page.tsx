@@ -32,7 +32,7 @@ function SuccessContent() {
       </p>
 
       {/* Order Number Box */}
-      <div className="bg-[#FAF7F0] border-2 border-dashed border-[#0B6E4F]/30 rounded-2xl p-4 sm:p-6 mb-8 max-w-md mx-auto">
+      <div className="bg-emerald-50/60 border-2 border-dashed border-[#0B6E4F]/40 rounded-lg p-4 sm:p-5 mb-6 max-w-md mx-auto">
         <span className="text-xs font-semibold text-gray-500 block mb-1">
           {t.checkout.orderNumber}
         </span>
@@ -82,7 +82,7 @@ function SuccessContent() {
 
         <Link
           href="/catalog"
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#FAF7F0] hover:bg-gray-100 text-gray-800 font-bold text-xs border border-gray-200 transition-all flex items-center justify-center gap-2"
+          className="w-full sm:w-auto px-6 py-2.5 rounded-md bg-white hover:bg-gray-50 text-gray-800 font-bold text-xs border border-gray-200 transition-all flex items-center justify-center gap-2"
         >
           <BookOpen className="w-4 h-4 text-[#0B6E4F]" />
           <span>{t.cart.continueShopping}</span>
@@ -94,7 +94,7 @@ function SuccessContent() {
 
 export default function CheckoutSuccessPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F0]">
+    <div className="min-h-screen flex flex-col bg-[#F4F5F7]">
       <Header />
       <main className="flex-1 max-w-7xl mx-auto px-4 py-12 w-full flex items-center justify-center">
         <Suspense fallback={<div className="p-8 text-center text-xs">লোড হচ্ছে...</div>}>
