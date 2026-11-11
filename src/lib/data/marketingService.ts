@@ -195,3 +195,4 @@ export async function deleteHeroSlide(slideId: string): Promise<boolean> {
   marketingConfig.heroSlides = marketingConfig.heroSlides.filter((s) => s.id !== slideId);
   return marketingConfig.heroSlides.length < len;
 }
+
